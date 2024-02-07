@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StartController : MonoBehaviour
 {
@@ -18,7 +17,7 @@ public class StartController : MonoBehaviour
         if(Input.anyKeyDown) {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                //audioSource.Play();
+                SceneManager.LoadScene("Level");
             }
             else {
                 audioSource.Play();
