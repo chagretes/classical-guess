@@ -367,9 +367,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdee07616bef36b2ca48e4685779a0a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelNumber: 0
-  TitleUI: {fileID: 1404289190}
-  LevelUI: {fileID: 1253691766}
+  levelNumber: 1
+  titleUI: {fileID: 1404289190}
+  levelUI: {fileID: 1253691766}
+  composersUI:
+  - {fileID: 655344312}
+  - {fileID: 1515682489}
+  - {fileID: 999469946}
+  - {fileID: 1202975045}
+  songSeconds: 10
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

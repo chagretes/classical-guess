@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Mozart
   m_EditorClassIdentifier: 
   songs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 96f465b752f9dfe4ab921e641dfafec1, type: 3}
+  - {fileID: 8300000, guid: d7144933c1234e2459f0d3359ef10035, type: 3}
+  - {fileID: 8300000, guid: 92606d7fd75c75a4bae8c979b942d903, type: 3}
+  - {fileID: 8300000, guid: 71a43b6048095094caf0a0159c128e99, type: 3}
   name: Mozart
   portrait: {fileID: 21300000, guid: d91cea622a9816144b444b4b3bd5b35e, type: 3}
+  level: 1

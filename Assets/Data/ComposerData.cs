@@ -18,8 +18,11 @@ namespace DataSystem
 
         [SerializeField]
         private Sprite portrait;
-
         public Sprite Portrait => portrait;
+
+        [SerializeField]
+        private int level;
+        public int Level => level;
 
     }
 }
