@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Wagner
   m_EditorClassIdentifier: 
   songs:
-  - {fileID: 8300000, guid: 96f465b752f9dfe4ab921e641dfafec1, type: 3}
-  - {fileID: 8300000, guid: d7144933c1234e2459f0d3359ef10035, type: 3}
-  - {fileID: 8300000, guid: 92606d7fd75c75a4bae8c979b942d903, type: 3}
-  - {fileID: 8300000, guid: 71a43b6048095094caf0a0159c128e99, type: 3}
+  - {fileID: 8300000, guid: e0d5f50fdd6323141bc3010a1efea032, type: 3}
+  - {fileID: 8300000, guid: 74ee940cbc646ef4bb1b9d645b887a07, type: 3}
+  - {fileID: 8300000, guid: cf0af3b9509af974c976e5c7e789ae80, type: 3}
+  - {fileID: 8300000, guid: 405d9f9dab70e734ab4ea4acab0a074d, type: 3}
+  - {fileID: 8300000, guid: 5c55b47a1703d9943b11d6c506fa5dbb, type: 3}
   name: Wagner
   portrait: {fileID: 21300000, guid: 27f0850ea0bb5a247a3f803ad2e01bc4, type: 3}
   level: 1
