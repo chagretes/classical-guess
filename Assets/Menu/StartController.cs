@@ -17,7 +17,7 @@ public class StartController : MonoBehaviour
         if(Input.anyKeyDown) {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                SceneManager.LoadScene("Level");
+                SceneManager.LoadScene("LevelScene");
             }
             else {
                 audioSource.Play();

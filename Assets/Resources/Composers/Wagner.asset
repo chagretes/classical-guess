@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b52488fe2cf30f449996fc25900ec824, type: 3}
+  m_Name: Wagner
+  m_EditorClassIdentifier: 
+  songs:
+  - {fileID: 8300000, guid: 96f465b752f9dfe4ab921e641dfafec1, type: 3}
+  - {fileID: 8300000, guid: d7144933c1234e2459f0d3359ef10035, type: 3}
+  - {fileID: 8300000, guid: 92606d7fd75c75a4bae8c979b942d903, type: 3}
+  - {fileID: 8300000, guid: 71a43b6048095094caf0a0159c128e99, type: 3}
+  name: Wagner
+  portrait: {fileID: 21300000, guid: 27f0850ea0bb5a247a3f803ad2e01bc4, type: 3}
+  level: 1
