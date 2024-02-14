@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
@@ -17,6 +18,14 @@ public class LevelController : MonoBehaviour
     private List<GameObject> composersUI;
     [SerializeField]
     private int songSeconds = 20;
+    [SerializeField]
+    private int roundsPerLevel = 5;
+    [SerializeField]
+    private int maxLevel = 1;
+    [SerializeField]
+    private int pointsPerRound = 500;
+    [SerializeField]
+    private ScoreData score;
     
     private DataManager dataManager;
     private AudioSource audioSource;
@@ -24,6 +33,8 @@ public class LevelController : MonoBehaviour
     private int roundNumber = 1;
     private bool isPlaying;
     private int roundComposerID;
+    private DateTime startPlayTime;
+
     private enum RoundEndType { RightGuess, WrongGuess, Timeout };
 
     // Start is called before the first frame update
@@ -31,6 +42,7 @@ public class LevelController : MonoBehaviour
     {
         dataManager = new DataManager();
         audioSource = GetComponent<AudioSource>();
+        score.ClearScore();
         StartCoroutine(StartSequence());
     }
 
@@ -52,32 +64,60 @@ public class LevelController : MonoBehaviour
         StartCoroutine(StartRound());
     }
 
-    IEnumerator StartRound(){
+    IEnumerator StartRound() {
         var initialRound = roundNumber;
         isPlaying = true;
-
-        roundComposerID = Random.Range(0,4);
+        roundComposerID = UnityEngine.Random.Range(0,4);
         var roundComposer = composers[roundComposerID];
         Debug.Log("Composer = " + roundComposer.Name);
 
         AudioClip roundSong = GetNextSong(roundComposer);
         Debug.Log("Song = " + roundSong.name);
+        startPlayTime = DateTime.Now;
         PlayRandomTenSeconds(roundSong);
 
         yield return new WaitForSeconds(songSeconds);
         if (isPlaying && roundNumber == initialRound) {
-            EndRound(RoundEndType.Timeout);
+            yield return EndRound(RoundEndType.Timeout);
         }
     }
 
-    private void EndRound(RoundEndType endType)
+    private IEnumerator EndRound(RoundEndType endType)
     {
         isPlaying = false;
         audioSource.Stop();
-        //Pontua ou não
-        StartCoroutine(ProvideFeedback(endType));
+        ScoreCalculation(endType);
+        yield return ProvideFeedback(endType);
         roundNumber++;
-        StartCoroutine(StartRound());
+        if(roundNumber>roundsPerLevel) {
+            levelNumber++;
+            if(levelNumber>maxLevel) {
+                EndGame();
+            } else {
+                roundNumber = 1;
+                StartCoroutine(StartRound());
+            }
+        } else {
+            StartCoroutine(StartRound());
+        }
+    }
+
+    private void ScoreCalculation(RoundEndType endType)
+    {
+        if (endType.Equals(RoundEndType.RightGuess)) {
+            TimeSpan diffInSeconds = DateTime.Now - startPlayTime;
+            int roundScore = pointsPerRound;
+            if(diffInSeconds.TotalSeconds > 1) {
+                roundScore = (int)(pointsPerRound * (songSeconds - diffInSeconds.TotalSeconds)/songSeconds);
+            }
+            score.AddScore(roundScore);
+            Debug.Log("Diff = " + diffInSeconds + "Round Score = " + roundScore);
+        }
+    }
+
+    private void EndGame()
+    {
+        throw new System.NotImplementedException();
     }
 
     // Depois tem conferir se a música já saiu para não ter
@@ -85,12 +125,12 @@ public class LevelController : MonoBehaviour
     private AudioClip GetNextSong(ComposerData roundComposer)
     {
         var songsSize = roundComposer.Songs.Count;
-        return roundComposer.Songs[Random.Range(0,songsSize)];
+        return roundComposer.Songs[UnityEngine.Random.Range(0,songsSize)];
     }
 
     private void PlayRandomTenSeconds(AudioClip song)
     {
-        float randomStartTime = Random.Range(0, Mathf.Max(0, song.length - songSeconds));
+        float randomStartTime = UnityEngine.Random.Range(0, Mathf.Max(0, song.length - songSeconds));
 
         audioSource.clip = song;
         audioSource.time = randomStartTime;
@@ -144,36 +184,36 @@ public class LevelController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.A))
             {
                 if(roundComposerID == 0) {
-                    EndRound(RoundEndType.RightGuess);
+                    StartCoroutine(EndRound(RoundEndType.RightGuess));
                 } else {
-                    EndRound(RoundEndType.WrongGuess);
+                    StartCoroutine(EndRound(RoundEndType.WrongGuess));
                 }
             }
 
             if (Input.GetKeyDown(KeyCode.S))
             {
                 if(roundComposerID == 1) {
-                    EndRound(RoundEndType.RightGuess);
+                    StartCoroutine(EndRound(RoundEndType.RightGuess));
                 } else {
-                    EndRound(RoundEndType.WrongGuess);
+                    StartCoroutine(EndRound(RoundEndType.WrongGuess));
                 }
             }
 
             if (Input.GetKeyDown(KeyCode.D))
             {
                 if(roundComposerID == 2) {
-                    EndRound(RoundEndType.RightGuess);
+                    StartCoroutine(EndRound(RoundEndType.RightGuess));
                 } else {
-                    EndRound(RoundEndType.WrongGuess);
+                    StartCoroutine(EndRound(RoundEndType.WrongGuess));
                 }
             }
 
             if (Input.GetKeyDown(KeyCode.F))
             {
                 if(roundComposerID == 3) {
-                    EndRound(RoundEndType.RightGuess);
+                    StartCoroutine(EndRound(RoundEndType.RightGuess));
                 } else {
-                    EndRound(RoundEndType.WrongGuess);
+                    StartCoroutine(EndRound(RoundEndType.WrongGuess));
                 }
             }
         }
