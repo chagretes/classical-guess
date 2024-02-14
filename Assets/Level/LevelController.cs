@@ -22,6 +22,10 @@ public class LevelController : MonoBehaviour
     private int roundsPerLevel = 5;
     [SerializeField]
     private int maxLevel = 1;
+    [SerializeField]
+    private int pointsPerRound = 500;
+    [SerializeField]
+    private ScoreData score;
     
     private DataManager dataManager;
     private AudioSource audioSource;
@@ -38,6 +42,7 @@ public class LevelController : MonoBehaviour
     {
         dataManager = new DataManager();
         audioSource = GetComponent<AudioSource>();
+        score.ClearScore();
         StartCoroutine(StartSequence());
     }
 
@@ -73,16 +78,16 @@ public class LevelController : MonoBehaviour
 
         yield return new WaitForSeconds(songSeconds);
         if (isPlaying && roundNumber == initialRound) {
-            EndRound(RoundEndType.Timeout);
+            yield return EndRound(RoundEndType.Timeout);
         }
     }
 
-    private void EndRound(RoundEndType endType)
+    private IEnumerator EndRound(RoundEndType endType)
     {
         isPlaying = false;
         audioSource.Stop();
-        //Pontua ou não
-        StartCoroutine(ProvideFeedback(endType));
+        ScoreCalculation(endType);
+        yield return ProvideFeedback(endType);
         roundNumber++;
         if(roundNumber>roundsPerLevel) {
             levelNumber++;
@@ -94,6 +99,19 @@ public class LevelController : MonoBehaviour
             }
         } else {
             StartCoroutine(StartRound());
+        }
+    }
+
+    private void ScoreCalculation(RoundEndType endType)
+    {
+        if (endType.Equals(RoundEndType.RightGuess)) {
+            TimeSpan diffInSeconds = DateTime.Now - startPlayTime;
+            int roundScore = pointsPerRound;
+            if(diffInSeconds.TotalSeconds > 1) {
+                roundScore = (int)(pointsPerRound * (songSeconds - diffInSeconds.TotalSeconds)/songSeconds);
+            }
+            score.AddScore(roundScore);
+            Debug.Log("Diff = " + diffInSeconds + "Round Score = " + roundScore);
         }
     }
 
@@ -112,7 +130,7 @@ public class LevelController : MonoBehaviour
 
     private void PlayRandomTenSeconds(AudioClip song)
     {
-        float randomStartTime = Random.Range(0, Mathf.Max(0, song.length - songSeconds));
+        float randomStartTime = UnityEngine.Random.Range(0, Mathf.Max(0, song.length - songSeconds));
 
         audioSource.clip = song;
         audioSource.time = randomStartTime;
@@ -166,36 +184,36 @@ public class LevelController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.A))
             {
                 if(roundComposerID == 0) {
-                    EndRound(RoundEndType.RightGuess);
+                    StartCoroutine(EndRound(RoundEndType.RightGuess));
                 } else {
-                    EndRound(RoundEndType.WrongGuess);
+                    StartCoroutine(EndRound(RoundEndType.WrongGuess));
                 }
             }
 
             if (Input.GetKeyDown(KeyCode.S))
             {
                 if(roundComposerID == 1) {
-                    EndRound(RoundEndType.RightGuess);
+                    StartCoroutine(EndRound(RoundEndType.RightGuess));
                 } else {
-                    EndRound(RoundEndType.WrongGuess);
+                    StartCoroutine(EndRound(RoundEndType.WrongGuess));
                 }
             }
 
             if (Input.GetKeyDown(KeyCode.D))
             {
                 if(roundComposerID == 2) {
-                    EndRound(RoundEndType.RightGuess);
+                    StartCoroutine(EndRound(RoundEndType.RightGuess));
                 } else {
-                    EndRound(RoundEndType.WrongGuess);
+                    StartCoroutine(EndRound(RoundEndType.WrongGuess));
                 }
             }
 
             if (Input.GetKeyDown(KeyCode.F))
             {
                 if(roundComposerID == 3) {
-                    EndRound(RoundEndType.RightGuess);
+                    StartCoroutine(EndRound(RoundEndType.RightGuess));
                 } else {
-                    EndRound(RoundEndType.WrongGuess);
+                    StartCoroutine(EndRound(RoundEndType.WrongGuess));
                 }
             }
         }
