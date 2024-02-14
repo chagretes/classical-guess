@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
-using TMPro;
 using UnityEngine;
 
 public class LevelController : MonoBehaviour
@@ -11,6 +10,8 @@ public class LevelController : MonoBehaviour
     [SerializeField]
     private GameObject titleUI;
     [SerializeField]
+    private TextExtension titleText;
+    [SerializeField]
     private GameObject levelUI;
     [SerializeField]
     private List<GameObject> composersUI;
@@ -18,7 +19,6 @@ public class LevelController : MonoBehaviour
     private int songSeconds = 20;
     
     private DataManager dataManager;
-    private TextMeshProUGUI titleText;
     private AudioSource audioSource;
     private List<ComposerData> composers;
     private int roundNumber = 1;
@@ -30,7 +30,6 @@ public class LevelController : MonoBehaviour
     void Start()
     {
         dataManager = new DataManager();
-        titleText = titleUI.GetComponent<TextMeshProUGUI>();
         audioSource = GetComponent<AudioSource>();
         StartCoroutine(StartSequence());
     }
@@ -47,9 +46,9 @@ public class LevelController : MonoBehaviour
         for(int i = 0; i < 4; i++) {
             // Tink isso aqui tem baixa performace, 
             // mas preguiça de fazer o cache do TextMeshPro agora
-            var text = composersUI[i].GetComponent<TextMeshProUGUI>();
-            text.SetText(composers[i].Name);
+            composersUI[i].GetComponent<TextExtension>().SetText(composers[i].Name);
         }
+
         StartCoroutine(StartRound());
     }
 
