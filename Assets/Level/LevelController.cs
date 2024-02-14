@@ -4,7 +4,6 @@ using DataSystem;
 using TMPro;
 using UnityEngine;
 
-
 public class LevelController : MonoBehaviour
 {
     [SerializeField]
@@ -57,13 +56,15 @@ public class LevelController : MonoBehaviour
     IEnumerator StartRound(){
         var initialRound = roundNumber;
         isPlaying = true;
+
         roundComposerID = Random.Range(0,4);
         var roundComposer = composers[roundComposerID];
         Debug.Log("Composer = " + roundComposer.Name);
+
         AudioClip roundSong = GetNextSong(roundComposer);
         Debug.Log("Song = " + roundSong.name);
-        audioSource.clip = roundSong;
-        audioSource.Play();
+        PlayRandomTenSeconds(roundSong);
+
         yield return new WaitForSeconds(songSeconds);
         if (isPlaying && roundNumber == initialRound) {
             EndRound(RoundEndType.Timeout);
@@ -85,6 +86,15 @@ public class LevelController : MonoBehaviour
     {
         var songsSize = roundComposer.Songs.Count;
         return roundComposer.Songs[Random.Range(0,songsSize)];
+    }
+
+    private void PlayRandomTenSeconds(AudioClip song)
+    {
+        float randomStartTime = Random.Range(0, Mathf.Max(0, song.length - songSeconds));
+
+        audioSource.clip = song;
+        audioSource.time = randomStartTime;
+        audioSource.Play();
     }
 
     void Update(){
