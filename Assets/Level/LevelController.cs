@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
@@ -17,6 +18,10 @@ public class LevelController : MonoBehaviour
     private List<GameObject> composersUI;
     [SerializeField]
     private int songSeconds = 20;
+    [SerializeField]
+    private int roundsPerLevel = 5;
+    [SerializeField]
+    private int maxLevel = 1;
     
     private DataManager dataManager;
     private TextMeshProUGUI titleText;
@@ -25,6 +30,8 @@ public class LevelController : MonoBehaviour
     private int roundNumber = 1;
     private bool isPlaying;
     private int roundComposerID;
+    private DateTime startPlayTime;
+
     private enum RoundEndType { RightGuess, WrongGuess, Timeout };
 
     // Start is called before the first frame update
@@ -57,13 +64,14 @@ public class LevelController : MonoBehaviour
     IEnumerator StartRound(){
         var initialRound = roundNumber;
         isPlaying = true;
-        roundComposerID = Random.Range(0,4);
+        roundComposerID = UnityEngine.Random.Range(0,4);
         var roundComposer = composers[roundComposerID];
         Debug.Log("Composer = " + roundComposer.Name);
         AudioClip roundSong = GetNextSong(roundComposer);
         Debug.Log("Song = " + roundSong.name);
         audioSource.clip = roundSong;
         audioSource.Play();
+        startPlayTime = DateTime.Now;
         yield return new WaitForSeconds(songSeconds);
         if (isPlaying && roundNumber == initialRound) {
             EndRound(RoundEndType.Timeout);
@@ -76,7 +84,22 @@ public class LevelController : MonoBehaviour
         audioSource.Stop();
         //Pontua ou não
         roundNumber++;
-        StartCoroutine(StartRound());
+        if(roundNumber>roundsPerLevel) {
+            levelNumber++;
+            if(levelNumber>maxLevel) {
+                EndGame();
+            } else {
+                roundNumber = 1;
+                StartCoroutine(StartRound());
+            }
+        } else {
+            StartCoroutine(StartRound());
+        }
+    }
+
+    private void EndGame()
+    {
+        throw new System.NotImplementedException();
     }
 
     // Depois tem conferir se a música já saiu para não ter
@@ -84,7 +107,7 @@ public class LevelController : MonoBehaviour
     private AudioClip GetNextSong(ComposerData roundComposer)
     {
         var songsSize = roundComposer.Songs.Count;
-        return roundComposer.Songs[Random.Range(0,songsSize)];
+        return roundComposer.Songs[UnityEngine.Random.Range(0,songsSize)];
     }
 
     void Update(){
