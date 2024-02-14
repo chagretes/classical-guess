@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Bach
   m_EditorClassIdentifier: 
   songs:
-  - {fileID: 8300000, guid: 96f465b752f9dfe4ab921e641dfafec1, type: 3}
-  - {fileID: 8300000, guid: d7144933c1234e2459f0d3359ef10035, type: 3}
-  - {fileID: 8300000, guid: 92606d7fd75c75a4bae8c979b942d903, type: 3}
-  - {fileID: 8300000, guid: 71a43b6048095094caf0a0159c128e99, type: 3}
+  - {fileID: 8300000, guid: ef3561f2eb6bc1649aa92603ceb8e54b, type: 3}
+  - {fileID: 8300000, guid: 78faeaa4275e33f4faef9f344d5a6e53, type: 3}
+  - {fileID: 8300000, guid: e7affd654c1044649a7eded88460fd32, type: 3}
+  - {fileID: 8300000, guid: 66988368eed6b8046b09fc3e82dddc6c, type: 3}
+  - {fileID: 8300000, guid: b6c22751c4aa7714ba0e11ecff852d41, type: 3}
   name: Bach
   portrait: {fileID: 21300000, guid: 5a14dba6f3eb6cc45a7034f2579ee05c, type: 3}
   level: 1
