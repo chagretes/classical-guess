@@ -75,6 +75,7 @@ public class LevelController : MonoBehaviour
         isPlaying = false;
         audioSource.Stop();
         //Pontua ou não
+        StartCoroutine(ProvideFeedback(endType));
         roundNumber++;
         StartCoroutine(StartRound());
     }
@@ -94,6 +95,48 @@ public class LevelController : MonoBehaviour
         audioSource.clip = song;
         audioSource.time = randomStartTime;
         audioSource.Play();
+    }
+
+    private IEnumerator ProvideFeedback(RoundEndType endType)
+    {
+        //deixa a resposta correta da cor verde
+
+        if (endType is RoundEndType.RightGuess)
+        {
+            Debug.Log($"That's right!");
+            //som agradável
+            //áudio com reforço positivo (podia ter um array com vários tipos de congratulações - "Well done!" "Awesome!"....
+            //ganha ponto
+            //espera o tempo da mensagem para seguir
+
+            //yield return new WaitForSeconds(msgSeconds);
+        }
+        else if (endType is RoundEndType.WrongGuess)
+        {
+            Debug.Log($"Not this time!");
+            //compositor selecionado fica com vermelha
+            //som desagradável
+            //áudio com uma mensagem de consolação "not this time" 
+            //espera o tempo da mensagem para seguir
+
+            //yield return new WaitForSeconds(msgSeconds);
+        }
+        else if (endType is RoundEndType.Timeout)
+        {
+            Debug.Log($"Time is out");
+            //som desagradável
+            //áudio com uma mensagem de consolação "time is up!" 
+            //espera o tempo da mensagem para seguir
+
+            //yield return new WaitForSeconds(msgSeconds);
+        }
+
+        Debug.Log($"The composer was {composers[roundComposerID]}");
+        //mensagem com a resposta correta: "The composer was 'name'!"
+        //yield return new WaitForSeconds(rightAnswerMsgSeconds);
+
+        yield return new WaitForSeconds(1f);
+
     }
 
     void Update(){
