@@ -20,4 +20,9 @@ public class TextExtension : MonoBehaviour
     {
         Text.text = text;
     }
+
+    public void ChangeColor(Color color) 
+    {
+        Text.color = color;
+    }
 }
