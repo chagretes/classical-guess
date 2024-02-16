@@ -13,6 +13,8 @@ public class LevelController : MonoBehaviour
     [SerializeField]
     private TextExtension titleText;
     [SerializeField]
+    private TextExtension textOnScreen;
+    [SerializeField]
     private GameObject levelUI;
     [SerializeField]
     private List<GameObject> composersUI;
@@ -32,10 +34,12 @@ public class LevelController : MonoBehaviour
     private SoundEffectManager soundEffectManager;
     private List<ComposerData> composers;
     private int roundNumber = 1;
+    private int songNumber = 1;
     private bool isPlaying;
     private int roundComposerID;
     private int playerIdGuess = -1;
     private DateTime startPlayTime;
+    private readonly List<string> congratulationList = new() { "That Is Right", "Excellent", "Well Done"};
 
     private enum RoundEndType { RightGuess, WrongGuess, Timeout };
 
@@ -45,19 +49,20 @@ public class LevelController : MonoBehaviour
         dataManager = new DataManager();
         audioSource = GetComponent<AudioSource>();
         soundEffectManager = SoundEffectManager.Instance;
-        soundEffectManager.PlayAudioNamed("Level "+levelNumber.ToString());
+        soundEffectManager.PlayAudioNamed($"Level {levelNumber}");
         score.ClearScore();
         StartCoroutine(StartSequence());
     }
 
     IEnumerator StartSequence()
     {
-        titleText.SetText("Level " + levelNumber);
+        titleText.SetText($"Level {levelNumber}");
         titleUI.SetActive(true);
         levelUI.SetActive(false);
         yield return new WaitForSeconds(3);
         titleUI.SetActive(false);
         levelUI.SetActive(true);
+        textOnScreen.gameObject.SetActive(true);
         composers = dataManager.GetComposers(levelNumber);
         for(int i = 0; i < 4; i++) {
             // Tink isso aqui tem baixa performace, 
@@ -71,6 +76,7 @@ public class LevelController : MonoBehaviour
     IEnumerator StartRound() {
         var initialRound = roundNumber;
         isPlaying = true;
+        textOnScreen.SetText($"Song {songNumber}");
         roundComposerID = UnityEngine.Random.Range(0,4);
         var roundComposer = composers[roundComposerID];
         Debug.Log("Composer = " + roundComposer.Name);
@@ -93,7 +99,8 @@ public class LevelController : MonoBehaviour
         ScoreCalculation(endType);
         yield return ProvideFeedback(endType);
         roundNumber++;
-        if(roundNumber>roundsPerLevel) {
+        songNumber++;
+        if (roundNumber>roundsPerLevel) {
             levelNumber++;
             if(levelNumber>maxLevel) {
                 EndGame();
@@ -143,46 +150,53 @@ public class LevelController : MonoBehaviour
 
     private IEnumerator ProvideFeedback(RoundEndType endType)
     {
+        string message;
         float waitingTime;
         composersUI[roundComposerID].GetComponent<TextExtension>().ChangeColor(Color.green);
 
         if (endType is RoundEndType.RightGuess)
         {
+            message = congratulationList[UnityEngine.Random.Range(0, congratulationList.Count)];
+            WriteMensageOnScreen(message);
+
             waitingTime = soundEffectManager.PlayAudioNamed("Correct");
             yield return new WaitForSeconds(waitingTime);
 
-            waitingTime = soundEffectManager.PlayPositiveFeedback();
-            //mensagem na tela com a mesma mensagem do áudio
+            waitingTime = soundEffectManager.PlayAudioNamed(message);
             yield return new WaitForSeconds(waitingTime);
         }
         else if (endType is RoundEndType.WrongGuess)
         {
             composersUI[playerIdGuess].GetComponent<TextExtension>().ChangeColor(Color.red);
 
+            message = "Not This Time";
+            WriteMensageOnScreen(message);
+
             waitingTime = soundEffectManager.PlayAudioNamed("Wrong");
             yield return new WaitForSeconds(waitingTime);
 
-            //mensagem na tela Not This Time
-            waitingTime = soundEffectManager.PlayAudioNamed("Not This Time");
+            waitingTime = soundEffectManager.PlayAudioNamed(message);
             yield return new WaitForSeconds(waitingTime);
 
         }
         else if (endType is RoundEndType.Timeout)
         {
+            message = "The Time Is Up";
+            WriteMensageOnScreen(message);
+
             waitingTime = soundEffectManager.PlayAudioNamed("Wrong");
             yield return new WaitForSeconds(waitingTime);
 
-            //mensagem na tela The Time Is Up
-            waitingTime = soundEffectManager.PlayAudioNamed("The Time Is Up");
+            waitingTime = soundEffectManager.PlayAudioNamed(message);
             yield return new WaitForSeconds(waitingTime);
         }
 
-        Debug.Log($"The composer was {composers[roundComposerID]}");
-        waitingTime = soundEffectManager.PlayAudio(composers[roundComposerID].AnswerAudio);
-        
-        //mensagem na tela "The composer was 'name'!"
+        message = $"The composer was {composers[roundComposerID].name}";
+        WriteMensageOnScreen(message);
 
+        waitingTime = soundEffectManager.PlayAudio(composers[roundComposerID].AnswerAudio);
         yield return new WaitForSeconds(waitingTime);
+
         ResetComposerNameColors();
         playerIdGuess = -1;
     }
@@ -225,6 +239,11 @@ public class LevelController : MonoBehaviour
     {
         composersUI[roundComposerID].GetComponent<TextExtension>().ChangeColor(Color.white);
         if (playerIdGuess != -1) { composersUI[playerIdGuess].GetComponent<TextExtension>().ChangeColor(Color.white); }
+    }
+
+    private void WriteMensageOnScreen(string message)
+    {
+        textOnScreen.SetText(message);
     }
 }
 

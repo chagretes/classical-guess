@@ -370,6 +370,7 @@ MonoBehaviour:
   levelNumber: 1
   titleUI: {fileID: 1404289190}
   titleText: {fileID: 1404289194}
+  textOnScreen: {fileID: 1959040521}
   levelUI: {fileID: 1253691766}
   composersUI:
   - {fileID: 655344312}
@@ -1475,7 +1476,7 @@ GameObject:
   - component: {fileID: 1959040519}
   - component: {fileID: 1959040521}
   m_Layer: 5
-  m_Name: Song Number
+  m_Name: TextOnScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
