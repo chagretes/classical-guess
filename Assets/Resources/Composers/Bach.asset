@@ -21,3 +21,4 @@ MonoBehaviour:
   name: Bach
   portrait: {fileID: 21300000, guid: 5a14dba6f3eb6cc45a7034f2579ee05c, type: 3}
   level: 1
+  answerAudio: {fileID: 8300000, guid: d3de6c05d63c41449aa27359c5489b9a, type: 3}

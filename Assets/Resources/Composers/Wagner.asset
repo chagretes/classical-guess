@@ -21,3 +21,4 @@ MonoBehaviour:
   name: Wagner
   portrait: {fileID: 21300000, guid: 27f0850ea0bb5a247a3f803ad2e01bc4, type: 3}
   level: 1
+  answerAudio: {fileID: 8300000, guid: 133f34d3937a5564299ece2b7e1105de, type: 3}
