@@ -157,38 +157,22 @@ public class LevelController : MonoBehaviour
         if (endType is RoundEndType.RightGuess)
         {
             message = congratulationList[UnityEngine.Random.Range(0, congratulationList.Count)];
-            WriteMensageOnScreen(message);
 
-            waitingTime = soundEffectManager.PlayAudioNamed("Correct");
-            yield return new WaitForSeconds(waitingTime);
-
-            waitingTime = soundEffectManager.PlayAudioNamed(message);
-            yield return new WaitForSeconds(waitingTime);
+            yield return LoadFeedback(message, "Correct");
         }
+
         else if (endType is RoundEndType.WrongGuess)
         {
             composersUI[playerIdGuess].GetComponent<TextExtension>().ChangeColor(Color.red);
 
             message = "Not This Time";
-            WriteMensageOnScreen(message);
-
-            waitingTime = soundEffectManager.PlayAudioNamed("Wrong");
-            yield return new WaitForSeconds(waitingTime);
-
-            waitingTime = soundEffectManager.PlayAudioNamed(message);
-            yield return new WaitForSeconds(waitingTime);
-
+            yield return LoadFeedback(message, "Wrong");
         }
+
         else if (endType is RoundEndType.Timeout)
         {
             message = "The Time Is Up";
-            WriteMensageOnScreen(message);
-
-            waitingTime = soundEffectManager.PlayAudioNamed("Wrong");
-            yield return new WaitForSeconds(waitingTime);
-
-            waitingTime = soundEffectManager.PlayAudioNamed(message);
-            yield return new WaitForSeconds(waitingTime);
+            yield return LoadFeedback(message, "Wrong");
         }
 
         message = $"The composer was {composers[roundComposerID].name}";
@@ -227,6 +211,18 @@ public class LevelController : MonoBehaviour
                 AnalizePlayerGuess();
             }
         }
+    }
+    private IEnumerator LoadFeedback(string message, string rightWrong)
+    {
+        float waitingTime;
+
+        WriteMensageOnScreen(message);
+
+        waitingTime = soundEffectManager.PlayAudioNamed(rightWrong);
+        yield return new WaitForSeconds(waitingTime);
+
+        waitingTime = soundEffectManager.PlayAudioNamed(message);
+        yield return new WaitForSeconds(waitingTime);
     }
 
     private void AnalizePlayerGuess()
