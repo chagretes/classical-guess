@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(RectTransform)), RequireComponent(typeof(TextMeshProUGUI))]
@@ -19,5 +18,10 @@ public class TextExtension : MonoBehaviour
     public void SetText(string text)
     {
         Text.text = text;
+    }
+
+    public void ChangeColor(Color color) 
+    {
+        Text.color = color;
     }
 }

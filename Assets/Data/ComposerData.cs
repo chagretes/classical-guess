@@ -23,5 +23,9 @@ namespace DataSystem
         private int level;
         public int Level => level;
 
+        [SerializeField]
+        private AudioClip answerAudio;
+        public AudioClip AnswerAudio => answerAudio;
+
     }
 }

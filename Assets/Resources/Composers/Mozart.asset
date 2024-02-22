@@ -22,3 +22,4 @@ MonoBehaviour:
   name: Mozart
   portrait: {fileID: 21300000, guid: d91cea622a9816144b444b4b3bd5b35e, type: 3}
   level: 1
+  answerAudio: {fileID: 8300000, guid: 4df6518c08545e54aa38f0701327add9, type: 3}
