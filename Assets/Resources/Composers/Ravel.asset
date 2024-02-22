@@ -26,5 +26,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dccc9426d9a662740b08000fc84883a7, type: 3}
   name: Ravel
   portrait: {fileID: 21300000, guid: b7bac5cdf9e03dd47bef85e63d9ef8ab, type: 3}
-  level: 0
+  level: 3
   answerAudio: {fileID: 8300000, guid: 0c819eb7952c94c41a17d3fac3012d0b, type: 3}
