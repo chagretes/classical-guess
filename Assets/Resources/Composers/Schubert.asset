@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b52488fe2cf30f449996fc25900ec824, type: 3}
+  m_Name: Schubert
+  m_EditorClassIdentifier: 
+  songs:
+  - {fileID: 8300000, guid: b642ab6c5289a4a4dbec9c54e39fe782, type: 3}
+  - {fileID: 8300000, guid: fcbb15ca24d535042bf99a5d3c313620, type: 3}
+  - {fileID: 8300000, guid: c455e9c25fb8aad4e8c216cb35a9a0a1, type: 3}
+  - {fileID: 8300000, guid: f73c13392eb402f4285a23ed301988e7, type: 3}
+  - {fileID: 8300000, guid: 5f64c4d6b01b6aa4eb938e7ceeb75d79, type: 3}
+  - {fileID: 8300000, guid: 6deb096025664e744820ba1b17ef26c7, type: 3}
+  - {fileID: 8300000, guid: aaa5f1847b4d5e94aa56a6ffe33f34b4, type: 3}
+  - {fileID: 8300000, guid: 912082ccaa154f945841cd30581d363c, type: 3}
+  - {fileID: 8300000, guid: 7f83e8bb0f90f9549a7a4e54c63bbc22, type: 3}
+  - {fileID: 8300000, guid: 810086eca490c264ca81034e8c59daf0, type: 3}
+  name: Schubert
+  portrait: {fileID: 21300000, guid: 9c5d335c415564b45a78b173193ff467, type: 3}
+  level: 2
+  answerAudio: {fileID: 8300000, guid: aaa9fcc56f956d541886f659a1f56bed, type: 3}
