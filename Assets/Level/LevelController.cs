@@ -23,7 +23,7 @@ public class LevelController : MonoBehaviour
     [SerializeField]
     private int roundsPerLevel = 5;
     [SerializeField]
-    private int maxLevel = 1;
+    private int maxLevel = 2;
     [SerializeField]
     private int pointsPerRound = 500;
     [SerializeField]
@@ -49,13 +49,13 @@ public class LevelController : MonoBehaviour
         dataManager = new DataManager();
         audioSource = GetComponent<AudioSource>();
         soundEffectManager = SoundEffectManager.Instance;
-        soundEffectManager.PlayAudioNamed($"Level {levelNumber}");
         score.ClearScore();
         StartCoroutine(StartSequence());
     }
 
     IEnumerator StartSequence()
     {
+        soundEffectManager.PlayAudioNamed($"Level {levelNumber}");
         titleText.SetText($"Level {levelNumber}");
         titleUI.SetActive(true);
         levelUI.SetActive(false);
@@ -106,7 +106,7 @@ public class LevelController : MonoBehaviour
                 EndGame();
             } else {
                 roundNumber = 1;
-                StartCoroutine(StartRound());
+                StartCoroutine(StartSequence());
             }
         } else {
             StartCoroutine(StartRound());
