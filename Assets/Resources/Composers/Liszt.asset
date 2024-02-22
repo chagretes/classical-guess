@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b52488fe2cf30f449996fc25900ec824, type: 3}
+  m_Name: Liszt
+  m_EditorClassIdentifier: 
+  songs:
+  - {fileID: 8300000, guid: 2c243e93b382d214da4146dffc30c80a, type: 3}
+  - {fileID: 8300000, guid: 0423932ee00530a4f9d80ede77987ee8, type: 3}
+  - {fileID: 8300000, guid: b8ea500689cb44545a333892582de52b, type: 3}
+  - {fileID: 8300000, guid: 778fdc0a81c9d86449c816edc62a43f7, type: 3}
+  - {fileID: 8300000, guid: b61e6280abe3a824ca6dfcb0ba478e67, type: 3}
+  - {fileID: 8300000, guid: 04dc32cf0100c8f42ae890171ee06081, type: 3}
+  - {fileID: 8300000, guid: ac6580e1b05e2214096efee12ac69617, type: 3}
+  - {fileID: 8300000, guid: f05f9744d9df2414d87215fcef0e51d0, type: 3}
+  - {fileID: 8300000, guid: a67b478a489da1049813adb3d6dbabd6, type: 3}
+  - {fileID: 8300000, guid: e45886e19232f984294461e7e05869fe, type: 3}
+  - {fileID: 8300000, guid: 601f695836250bf43b115764a209718d, type: 3}
+  - {fileID: 8300000, guid: 54f3bb645d9d2e148a357b23dd9342bf, type: 3}
+  - {fileID: 8300000, guid: dc3ca30e0b222554f8225e8d3bdfa254, type: 3}
+  - {fileID: 8300000, guid: 10e5180d6a4ec8f49831e63fd1ac5740, type: 3}
+  - {fileID: 8300000, guid: 4482656d39f4ff746a3e3f6ce445fde9, type: 3}
+  - {fileID: 8300000, guid: 8cbf8aef9c042af4ebfe98024b0245bc, type: 3}
+  - {fileID: 8300000, guid: 0e3f2478076685f408aaffc2bb4dcbc6, type: 3}
+  name: Liszt
+  portrait: {fileID: 21300000, guid: ff170bb76c7c30248992dc9b07050099, type: 3}
+  level: 3
+  answerAudio: {fileID: 8300000, guid: 32691d14744d67c4fa11be8bb790beaf, type: 3}
