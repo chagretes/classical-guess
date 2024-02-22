@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b52488fe2cf30f449996fc25900ec824, type: 3}
+  m_Name: Tchaikovsky
+  m_EditorClassIdentifier: 
+  songs:
+  - {fileID: 8300000, guid: b5907ae234ddb944fa357e5856458919, type: 3}
+  - {fileID: 8300000, guid: 043bbfe76f45fe448814ade81b1f6a87, type: 3}
+  - {fileID: 8300000, guid: 8abc55fcef504db4ab40d308fa721d8a, type: 3}
+  - {fileID: 8300000, guid: f1acebbc7442bae4790fdf0c7632b7dc, type: 3}
+  - {fileID: 8300000, guid: aae1d1070f94c62479e1c9f515bca179, type: 3}
+  - {fileID: 8300000, guid: e673e97b215aaa04a94b90023f82f53e, type: 3}
+  - {fileID: 8300000, guid: 5897f70593baebc429afc08e63bab470, type: 3}
+  - {fileID: 8300000, guid: ed2a29def6508ba4889de1c2802ff403, type: 3}
+  - {fileID: 8300000, guid: 76a32256fba2bb44aa1f5298798f8bc0, type: 3}
+  - {fileID: 8300000, guid: 524b04158145b224fb5deff86e81864f, type: 3}
+  - {fileID: 8300000, guid: 93f1c411100ace04281d488a031756e5, type: 3}
+  - {fileID: 8300000, guid: b9e6c8cba3b4d8247821eeabf0f8da15, type: 3}
+  - {fileID: 8300000, guid: b3db1994593b0d84f9d295c3a3b0790e, type: 3}
+  - {fileID: 8300000, guid: 711371aff5fddd745b0fbf5fa8337527, type: 3}
+  name: Tchaikovsky
+  portrait: {fileID: 21300000, guid: 2b33f385aa53e6948b11a20aad7e44b0, type: 3}
+  level: 3
+  answerAudio: {fileID: 8300000, guid: 6f696ebc26072504197fb7dece9a98c4, type: 3}
