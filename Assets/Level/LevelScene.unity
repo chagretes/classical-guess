@@ -378,8 +378,8 @@ MonoBehaviour:
   - {fileID: 999469946}
   - {fileID: 1202975045}
   songSeconds: 10
-  roundsPerLevel: 6
-  maxLevel: 2
+  roundsPerLevel: 5
+  maxLevel: 3
   pointsPerRound: 500
   score: {fileID: 11400000, guid: 229dd12c1187679af8b9787f4a6b5299, type: 2}
 --- !u!1 &519420028

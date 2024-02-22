@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b52488fe2cf30f449996fc25900ec824, type: 3}
+  m_Name: Brahms
+  m_EditorClassIdentifier: 
+  songs:
+  - {fileID: 8300000, guid: 02e066635026b0741944827ee7a904e0, type: 3}
+  - {fileID: 8300000, guid: 32d416cbe3e908f4dafb97655f8c1480, type: 3}
+  - {fileID: 8300000, guid: ffff3789bad78c3479442298377e3ae5, type: 3}
+  - {fileID: 8300000, guid: 91e57df771922db4d814414d30cb4146, type: 3}
+  - {fileID: 8300000, guid: a16417a3937ad8e42a28c1c0e44e3b72, type: 3}
+  - {fileID: 8300000, guid: bcd3bd633547dd14a8a91569f6bc901c, type: 3}
+  - {fileID: 8300000, guid: c82ae67763532204f9f9979ed92e7328, type: 3}
+  - {fileID: 8300000, guid: eb8a9504cb6df7044a911c791a4f5741, type: 3}
+  - {fileID: 8300000, guid: 2cccf46abc7edf14d9406cda4ccb6546, type: 3}
+  - {fileID: 8300000, guid: 905ee80fdd697ec4084c5c998c7a1a5d, type: 3}
+  - {fileID: 8300000, guid: 344f7e1986453dc4f885b4900ce38b19, type: 3}
+  name: Brahms
+  portrait: {fileID: 21300000, guid: 6c7265a24d03f7f47a3f343ced01687f, type: 3}
+  level: 3
+  answerAudio: {fileID: 8300000, guid: eaf50dfde68b1924cb996f232888d344, type: 3}

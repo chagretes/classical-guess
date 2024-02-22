@@ -19,11 +19,11 @@ public class LevelController : MonoBehaviour
     [SerializeField]
     private List<GameObject> composersUI;
     [SerializeField]
-    private int songSeconds = 20;
+    private int songSeconds = 10;
     [SerializeField]
     private int roundsPerLevel = 5;
     [SerializeField]
-    private int maxLevel = 2;
+    private int maxLevel = 3;
     [SerializeField]
     private int pointsPerRound = 500;
     [SerializeField]
@@ -40,7 +40,7 @@ public class LevelController : MonoBehaviour
     private int playerIdGuess = -1;
     private DateTime startPlayTime;
     private readonly List<string> congratulationList = new() { "That Is Right", "Excellent", "Well Done"};
-
+    //criar uma variedade de mensagens para o erro também. não apenas "Not this time"
     private enum RoundEndType { RightGuess, WrongGuess, Timeout };
 
     // Start is called before the first frame update
