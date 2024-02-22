@@ -378,8 +378,8 @@ MonoBehaviour:
   - {fileID: 999469946}
   - {fileID: 1202975045}
   songSeconds: 10
-  roundsPerLevel: 5
-  maxLevel: 1
+  roundsPerLevel: 6
+  maxLevel: 2
   pointsPerRound: 500
   score: {fileID: 11400000, guid: 229dd12c1187679af8b9787f4a6b5299, type: 2}
 --- !u!1 &519420028
@@ -748,10 +748,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 814709495}
-  wellDone: {fileID: 8300000, guid: 6c4f6152468adbf43b16495d8ca42384, type: 3}
-  thatsRight: {fileID: 8300000, guid: b2fad974fdf776a4d8d2bd76ecdac438, type: 3}
-  excellent: {fileID: 8300000, guid: 46bdd03bbcfb3de418566d31881916ba, type: 3}
-  congratulations: []
 --- !u!4 &814709497
 Transform:
   m_ObjectHideFlags: 0
