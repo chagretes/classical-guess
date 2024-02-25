@@ -27,5 +27,10 @@ namespace DataSystem
         private AudioClip answerAudio;
         public AudioClip AnswerAudio => answerAudio;
 
+
+        [SerializeField]
+        private AudioClip selectionAudio;
+        public AudioClip SelectionAudio => selectionAudio;
+
     }
 }
