@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Bach
   m_EditorClassIdentifier: 
   songs:
-  - {fileID: 8300000, guid: e7affd654c1044649a7eded88460fd32, type: 3}
   - {fileID: 8300000, guid: 73bad49135749724aa5f3872bafb8811, type: 3}
   - {fileID: 8300000, guid: d52799625fd82bd4f998a942d7b14b36, type: 3}
   - {fileID: 8300000, guid: 46cad16377516a543a5908cb2b4d85e7, type: 3}
