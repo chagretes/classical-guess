@@ -13,11 +13,17 @@ MonoBehaviour:
   m_Name: Wagner
   m_EditorClassIdentifier: 
   songs:
-  - {fileID: 8300000, guid: e0d5f50fdd6323141bc3010a1efea032, type: 3}
-  - {fileID: 8300000, guid: 74ee940cbc646ef4bb1b9d645b887a07, type: 3}
+  - {fileID: 8300000, guid: 57537fee8b1f70e49a44c3af456b882e, type: 3}
+  - {fileID: 8300000, guid: b849178dfaf82654d873fac0ec696db1, type: 3}
+  - {fileID: 8300000, guid: ab118e8db9755f6468e9dc13ed23f336, type: 3}
+  - {fileID: 8300000, guid: fe49790b44ee98848b731baa8cdc148b, type: 3}
+  - {fileID: 8300000, guid: 8a69bf9ca8be5884f94f0159f6ff3d58, type: 3}
+  - {fileID: 8300000, guid: 14219daeaeb2fab4ab86e6ba53190638, type: 3}
   - {fileID: 8300000, guid: cf0af3b9509af974c976e5c7e789ae80, type: 3}
-  - {fileID: 8300000, guid: 405d9f9dab70e734ab4ea4acab0a074d, type: 3}
+  - {fileID: 8300000, guid: 46aad7b0df34b8e49864f4d1a5a06739, type: 3}
+  - {fileID: 8300000, guid: b66bed386071e914a8a03b38c833e0c9, type: 3}
   - {fileID: 8300000, guid: 5c55b47a1703d9943b11d6c506fa5dbb, type: 3}
+  - {fileID: 8300000, guid: 473bc121f6fc986468fca8009ff23f0e, type: 3}
   name: Wagner
   portrait: {fileID: 21300000, guid: 27f0850ea0bb5a247a3f803ad2e01bc4, type: 3}
   level: 1
