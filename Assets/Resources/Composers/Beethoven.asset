@@ -13,11 +13,18 @@ MonoBehaviour:
   m_Name: Beethoven
   m_EditorClassIdentifier: 
   songs:
-  - {fileID: 8300000, guid: 96f465b752f9dfe4ab921e641dfafec1, type: 3}
-  - {fileID: 8300000, guid: d7144933c1234e2459f0d3359ef10035, type: 3}
-  - {fileID: 8300000, guid: 92606d7fd75c75a4bae8c979b942d903, type: 3}
-  - {fileID: 8300000, guid: 71a43b6048095094caf0a0159c128e99, type: 3}
+  - {fileID: 8300000, guid: e34974e84ca4e784e9635bdbd64b5611, type: 3}
+  - {fileID: 8300000, guid: e359563424def5248ad7dd967ae087cb, type: 3}
+  - {fileID: 8300000, guid: 997668f64bdb0af4187844406c745bc1, type: 3}
+  - {fileID: 8300000, guid: 4c4e1a18c3d279147a47c776ebf4de37, type: 3}
+  - {fileID: 8300000, guid: 417a92a88e4b7a44ca05752d3cd66e09, type: 3}
+  - {fileID: 8300000, guid: 3f87bd5d64e81424982525e05cc80228, type: 3}
+  - {fileID: 8300000, guid: fe170c7863135364e89384e434b0e518, type: 3}
+  - {fileID: 8300000, guid: 5c6673f93ac45e74696421e9569a0655, type: 3}
+  - {fileID: 8300000, guid: f9b7e32803e09fb46bd7008a043ba241, type: 3}
+  - {fileID: 8300000, guid: 66c6d4854ea4b6c41a96e1f6ee122e3d, type: 3}
   name: Beethoven
   portrait: {fileID: 21300000, guid: 3c0b4a49fb3e7df4882e665ece716d24, type: 3}
   level: 1
   answerAudio: {fileID: 8300000, guid: 0de4bdf8c5cf4ad4faddf5acc7cb9dcf, type: 3}
+  selectionAudio: {fileID: 8300000, guid: 67f9369b4cc478143995986d31359e5e, type: 3}

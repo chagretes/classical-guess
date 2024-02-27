@@ -34,3 +34,4 @@ MonoBehaviour:
   portrait: {fileID: 21300000, guid: ff170bb76c7c30248992dc9b07050099, type: 3}
   level: 3
   answerAudio: {fileID: 8300000, guid: 32691d14744d67c4fa11be8bb790beaf, type: 3}
+  selectionAudio: {fileID: 8300000, guid: 4dc042e2cd0078d41ab43eab8480323b, type: 3}

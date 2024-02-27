@@ -28,13 +28,26 @@ public class LevelController : MonoBehaviour
     private int pointsPerRound = 500;
     [SerializeField]
     private ScoreData score;
-    
+
+    [SerializeField]
+    private GameObject instructions;
+
+    [SerializeField]
+    private AudioClip generalExplanation;
+    [SerializeField]
+    private AudioClip level1explanation;
+    [SerializeField] 
+    private AudioClip level2explanation;
+    [SerializeField]
+    private AudioClip level3explanation;
+
     private DataManager dataManager;
     private AudioSource audioSource;
     private SoundEffectManager soundEffectManager;
     private List<ComposerData> composers;
     private int roundNumber = 1;
     private int songNumber = 1;
+    private bool isLearning;
     private bool isPlaying;
     private int roundComposerID;
     private int playerIdGuess = -1;
@@ -49,6 +62,7 @@ public class LevelController : MonoBehaviour
         dataManager = new DataManager();
         audioSource = GetComponent<AudioSource>();
         soundEffectManager = SoundEffectManager.Instance;
+        instructions.SetActive(false);
         score.ClearScore();
         StartCoroutine(StartSequence());
     }
@@ -62,18 +76,46 @@ public class LevelController : MonoBehaviour
         yield return new WaitForSeconds(3);
         titleUI.SetActive(false);
         levelUI.SetActive(true);
+        textOnScreen.SetText($"Level {levelNumber} composers");
         textOnScreen.gameObject.SetActive(true);
+
+        //load text instructions
+        instructions.SetActive(true);
+
         composers = dataManager.GetComposers(levelNumber);
-        for(int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++)
+        {
             // Tink isso aqui tem baixa performace, 
             // mas preguiça de fazer o cache do TextMeshPro agora
             composersUI[i].GetComponent<TextExtension>().SetText(composers[i].Name);
         }
 
+        yield return LoadAudioInstructions();
+
+        isLearning = true;
+
+        yield return new WaitWhile(() => isLearning);
+
         StartCoroutine(StartRound());
     }
 
+    IEnumerator LoadAudioInstructions()
+    {
+        if (levelNumber == 1) { audioSource.clip = level1explanation; }
+        else if (levelNumber == 2) { audioSource.clip = level2explanation; }
+        else if (levelNumber == 3) { audioSource.clip = level3explanation; }
+
+        audioSource.Play();
+        yield return new WaitForSeconds(audioSource.clip.length);
+
+        audioSource.clip = generalExplanation;
+        audioSource.Play();
+        yield return new WaitForSeconds(audioSource.clip.length);
+    }
+
     IEnumerator StartRound() {
+        instructions.SetActive(false);
+
         var initialRound = roundNumber;
         isPlaying = true;
         textOnScreen.SetText($"Song {songNumber}");
@@ -103,6 +145,7 @@ public class LevelController : MonoBehaviour
         if (roundNumber>roundsPerLevel) {
             levelNumber++;
             if(levelNumber>maxLevel) {
+                Debug.Log($"Your score was {score.Score}");
                 EndGame();
             } else {
                 roundNumber = 1;
@@ -186,6 +229,35 @@ public class LevelController : MonoBehaviour
     }
 
     void Update(){
+
+        if(isLearning)
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                soundEffectManager.PlayAudio(composers[0].SelectionAudio);
+            }
+
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                soundEffectManager.PlayAudio(composers[1].SelectionAudio);
+            }
+
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                soundEffectManager.PlayAudio(composers[2].SelectionAudio);
+            }
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                soundEffectManager.PlayAudio(composers[3].SelectionAudio);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                isLearning = false;
+            }
+        }
+
         if(isPlaying) {
             if (Input.GetKeyDown(KeyCode.A))
             {
