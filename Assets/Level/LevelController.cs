@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DataSystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
@@ -90,13 +91,8 @@ public class LevelController : MonoBehaviour
             composersUI[i].GetComponent<TextExtension>().SetText(composers[i].Name);
         }
 
-        yield return LoadAudioInstructions();
-
         isLearning = true;
-
-        yield return new WaitWhile(() => isLearning);
-
-        StartCoroutine(StartRound());
+        yield return LoadAudioInstructions();
     }
 
     IEnumerator LoadAudioInstructions()
@@ -107,16 +103,17 @@ public class LevelController : MonoBehaviour
 
         audioSource.Play();
         yield return new WaitForSeconds(audioSource.clip.length);
-
-        audioSource.clip = generalExplanation;
-        audioSource.Play();
-        yield return new WaitForSeconds(audioSource.clip.length);
+        if(isLearning) {
+            audioSource.clip = generalExplanation;
+            audioSource.Play();
+        }
     }
 
     IEnumerator StartRound() {
         instructions.SetActive(false);
 
         var initialRound = roundNumber;
+        isLearning = false;
         isPlaying = true;
         textOnScreen.SetText($"Song {songNumber}");
         roundComposerID = UnityEngine.Random.Range(0,4);
@@ -171,7 +168,7 @@ public class LevelController : MonoBehaviour
 
     private void EndGame()
     {
-        throw new System.NotImplementedException();
+        SceneManager.LoadScene("LeaderboardsScene");
     }
 
     // Depois tem conferir se a música já saiu para não ter
@@ -255,6 +252,8 @@ public class LevelController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 isLearning = false;
+                audioSource.Stop();
+                StartCoroutine(StartRound());
             }
         }
 
