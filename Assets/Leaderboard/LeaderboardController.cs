@@ -1,12 +1,10 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using DataSystem;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.Networking;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LeaderboardController : MonoBehaviour
 {
@@ -28,7 +26,15 @@ public class LeaderboardController : MonoBehaviour
 
     void Update()
     {
-        if(inputName.enabled && !inputName.isFocused)
+        if(!inputName.enabled)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene("StartScene");
+            }
+
+        }
+        else if(inputName.enabled && !inputName.isFocused)
         {
             inputName.Select();
         }
@@ -46,7 +52,7 @@ public class LeaderboardController : MonoBehaviour
     IEnumerator PostScore()
     {
         var name = inputName.text.ToUpperInvariant();
-        string uri = $"http://localhost:5015/api/Score?name={name}&points={score.Score}";
+        string uri = $"http://63.142.241.180:5001/api/Score?name={name}&points={score.Score}";
         using UnityWebRequest request = UnityWebRequest.Post(uri, "", "application/json");
         yield return request.SendWebRequest();
         if (request.result != UnityWebRequest.Result.Success)
@@ -62,7 +68,7 @@ public class LeaderboardController : MonoBehaviour
 
     private IEnumerator GetScores()
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get("http://localhost:5015/api/Score"))
+        using (UnityWebRequest webRequest = UnityWebRequest.Get("http://63.142.241.180:5001/api/Score"))
         {
             // Request and wait for the desired page.
             yield return webRequest.SendWebRequest();
