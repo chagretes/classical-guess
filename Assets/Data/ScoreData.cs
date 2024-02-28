@@ -7,12 +7,14 @@ namespace DataSystem
     {
         [SerializeField]
         private int score = 0;
-        public int Score => score;
+        public int Score => score-score%10;
+        
         public void AddScore(int roundScore) {
             score += roundScore;
         }
         public void ClearScore() {
             score = 0;
-        } 
+        }
+        
     }
 }

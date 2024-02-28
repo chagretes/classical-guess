@@ -19,6 +19,7 @@ public class LeaderboardController : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(GetScores());
         instructions.SetText($"YOUR SCORE WAS\n{score.Score}\nTYPE 3 Characters TO REGISTER YOUR SCORE");
         inputName.Select();
         inputName.onValueChanged.AddListener(inputChanged);
@@ -76,6 +77,7 @@ public class LeaderboardController : MonoBehaviour
             switch (webRequest.result)
             {
                 case UnityWebRequest.Result.Success:
+                    leaderboardList.SetActive(true);
                     ScoreWrapper scoresWrapper = new ();
                     JsonUtility.FromJsonOverwrite(webRequest.downloadHandler.text, scoresWrapper);
                     var scores = scoresWrapper.scores;

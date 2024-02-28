@@ -118,10 +118,14 @@ public class LevelController : MonoBehaviour
         textOnScreen.SetText($"Song {songNumber}");
         roundComposerID = UnityEngine.Random.Range(0,4);
         var roundComposer = composers[roundComposerID];
+#if UNITY_EDITOR
         Debug.Log("Composer = " + roundComposer.Name);
+#endif
 
         AudioClip roundSong = GetNextSong(roundComposer);
+#if UNITY_EDITOR
         Debug.Log("Song = " + roundSong.name);
+#endif
         startPlayTime = DateTime.Now;
         PlayRandomTenSeconds(roundSong);
 
@@ -142,7 +146,9 @@ public class LevelController : MonoBehaviour
         if (roundNumber>roundsPerLevel) {
             levelNumber++;
             if(levelNumber>maxLevel) {
+#if UNITY_EDITOR
                 Debug.Log($"Your score was {score.Score}");
+#endif
                 EndGame();
             } else {
                 roundNumber = 1;
@@ -162,7 +168,9 @@ public class LevelController : MonoBehaviour
                 roundScore = (int)(pointsPerRound * (songSeconds - diffInSeconds.TotalSeconds)/songSeconds);
             }
             score.AddScore(roundScore);
+#if UNITY_EDITOR
             Debug.Log("Diff = " + diffInSeconds + "Round Score = " + roundScore);
+#endif
         }
     }
 
