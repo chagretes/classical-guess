@@ -20,6 +20,7 @@ public class LeaderboardController : MonoBehaviour
     void Start()
     {
         StartCoroutine(GetScores());
+        StartCoroutine(AnnounceScore(score.Score));
         instructions.SetText($"YOUR SCORE WAS\n{score.Score}\nTYPE 3 Characters TO REGISTER YOUR SCORE");
         inputName.Select();
         inputName.onValueChanged.AddListener(inputChanged);
@@ -99,6 +100,27 @@ public class LeaderboardController : MonoBehaviour
             }
         }
     }
+
+    private IEnumerator AnnounceScore(int value)
+    {
+        int thousandValue = ((value / 1000) % 10) * 1000;
+        int hundredValue = ((value / 100) % 10) * 100;
+        int tenValue = ((value / 10) % 10) * 10;
+
+        float waitingTime = SoundEffectManager.Instance.PlayAudioNamed("YourScoreWas", "ScoreAudio");
+        yield return new WaitForSeconds(waitingTime);
+
+        waitingTime = SoundEffectManager.Instance.PlayAudioNamed(thousandValue.ToString(), "ScoreAudio");
+        yield return new WaitForSeconds(waitingTime);
+        
+        waitingTime = SoundEffectManager.Instance.PlayAudioNamed(hundredValue.ToString(), "ScoreAudio");
+        yield return new WaitForSeconds(waitingTime);
+
+        waitingTime = SoundEffectManager.Instance.PlayAudioNamed(tenValue.ToString(), "ScoreAudio");
+        yield return new WaitForSeconds(waitingTime);
+
+    }
+
 
     [Serializable]
     private class ScoreWrapper

@@ -7,6 +7,8 @@ public class SoundEffectManager : MonoBehaviour
     [SerializeField]
     private AudioSource audioSource;
 
+
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -20,16 +22,18 @@ public class SoundEffectManager : MonoBehaviour
         return audioSource.clip.length;
     }
 
-    public float PlayAudioNamed(string audioName)
+    public float PlayAudioNamed(string audioName, string folder = "")
     {
+        string fileName = folder == "" ? $"Audios/{audioName}" : $"{folder}/{audioName}";
+
         try
         {
-            AudioClip audioClip = Resources.Load<AudioClip>("Audios/"+audioName);
+            AudioClip audioClip = Resources.Load<AudioClip>(fileName);
             return PlayAudio(audioClip);
         }
         catch
         {
-            Debug.Log($"Não existe arquivo com o nome {audioName}");
+            Debug.Log($"Não existe arquivo com o nome {fileName}");
             return 0;
         }
     }
