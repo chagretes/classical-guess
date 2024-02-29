@@ -137,7 +137,6 @@ public class LevelController : MonoBehaviour
 
     private IEnumerator EndRound(RoundEndType endType)
     {
-        isPlaying = false;
         audioSource.Stop();
         ScoreCalculation(endType);
         yield return ProvideFeedback(endType);
@@ -268,24 +267,28 @@ public class LevelController : MonoBehaviour
         if(isPlaying) {
             if (Input.GetKeyDown(KeyCode.A))
             {
+                isPlaying = false;
                 playerIdGuess = 0;
                 AnalizePlayerGuess();
             }
 
             if (Input.GetKeyDown(KeyCode.S))
             {
+                isPlaying = false;
                 playerIdGuess = 1;
                 AnalizePlayerGuess();
             }
 
             if (Input.GetKeyDown(KeyCode.D))
             {
+                isPlaying = false;
                 playerIdGuess = 2;
                 AnalizePlayerGuess();
             }
 
             if (Input.GetKeyDown(KeyCode.F))
             {
+                isPlaying = false;
                 playerIdGuess = 3;
                 AnalizePlayerGuess();
             }
@@ -312,8 +315,13 @@ public class LevelController : MonoBehaviour
 
     private void ResetComposerNameColors()
     {
-        composersUI[roundComposerID].GetComponent<TextExtension>().ChangeColor(Color.white);
-        if (playerIdGuess != -1) { composersUI[playerIdGuess].GetComponent<TextExtension>().ChangeColor(Color.white); }
+        for (int i = 0; i < 4; i++)
+        {
+            composersUI[i].GetComponent<TextExtension>().ChangeColor(Color.white);
+        }
+
+        //composersUI[roundComposerID].GetComponent<TextExtension>().ChangeColor(Color.white);
+        //if (playerIdGuess != -1) { composersUI[playerIdGuess].GetComponent<TextExtension>().ChangeColor(Color.white); }
     }
 
     private void WriteMensageOnScreen(string message)
